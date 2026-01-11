@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GachaMap - Discover Japan's Capsule Toy Paradise</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;900&family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes capsule-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 1; }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bounce-slow {
+            animation: bounce-slow 3s ease-in-out infinite;
+        }
+        
+        .gradient-animate {
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        .capsule-rain {
+            position: fixed;
+            top: -100px;
+            animation: capsule-fall 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .capsule-rain:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .capsule-rain:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .capsule-rain:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .capsule-rain:nth-child(4) { left: 70%; animation-delay: 6s; }
+        .capsule-rain:nth-child(5) { left: 90%; animation-delay: 1s; }
+        
+        .text-stroke {
+            -webkit-text-stroke: 2px #FF6B9D;
+            text-stroke: 2px #FF6B9D;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.5),
+                        0 0 60px rgba(255, 107, 157, 0.3),
+                        0 0 90px rgba(255, 107, 157, 0.1);
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(-5deg) scale(1.05);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #FFF0F5;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #FF6B9D, #FFA07A);
+            border-radius: 10px;
+        }
+        
+        .hero-text {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        
+        .handwritten {
+            font-family: 'Kalam', cursive;
+        }
+        
+        .icon-text {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Floating Capsule Animation -->
+    <div class="capsule-rain">🎰</div>
+    <div class="capsule-rain">🎲</div>
+    <div class="capsule-rain">🎯</div>
+    <div class="capsule-rain">🎪</div>
+    <div class="capsule-rain">🎨</div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-lg shadow-lg z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center neon-glow">
+                    <span class="text-white text-xl">🎰</span>
+                </div>
+                <span class="text-2xl font-black bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    GachaMap
+                </span>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="#features" class="hidden md:block text-gray-700 hover:text-pink-500 font-semibold transition">Features</a>
+                <a href="#how-it-works" class="hidden md:block text-gray-700 hover:text-pink-500 font-semibold transition">How It Works</a>
+                <a href="#testimonials" class="hidden md:block text-gray-700 hover:text-pink-500 font-semibold transition">Reviews</a>
+                <button class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-2xl transform hover:scale-105 transition-all">
+                    Download Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 gradient-animate pt-20">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-pink-300/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-yellow-300/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full text-white font-bold text-sm mb-6 bounce-slow">
+                        <i class="fas fa-star mr-2"></i>
+                        Your Perfect Gacha Companion
+                    </div>
+                    
+                    <h1 class="hero-text text-6xl md:text-7xl lg:text-8xl font-black mb-6">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-600 to-blue-600">
+                            UNLOCK
+                        </span>
+                        <br>
+                        <span class="text-gray-900">JAPAN'S</span>
+                        <br>
+                        <span class="text-stroke text-white">GACHA</span>
+                        <span class="handwritten text-5xl md:text-6xl text-pink-500 ml-2">Magic!</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                        Find <span class="font-bold text-pink-500">thousands of capsule toy machines</span> across Japan! 
+                        From rare Pokemon figures in Shibuya to exclusive Sanrio collections in Harajuku - 
+                        your perfect gacha adventure starts here! 🎯
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <button class="group bg-black text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center gap-3">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs opacity-80">Download on the</div>
+                                <div>App Store</div>
+                            </div>
+                        </button>
+                        <button class="group bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center gap-3">
+                            <i class="fab fa-google-play text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Get it on</div>
+                                <div>Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center gap-8">
+                        <div>
+                            <div class="text-2xl font-black text-gray-900">🗺️</div>
+                            <div class="text-sm text-gray-600 font-semibold">Real-time Map</div>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div>
+                            <div class="text-2xl font-black text-gray-900">🌏</div>
+                            <div class="text-sm text-gray-600 font-semibold">Multi-language</div>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div>
+                            <div class="text-2xl font-black text-gray-900">📍</div>
+                            <div class="text-sm text-gray-600 font-semibold">GPS Navigation</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative float-animation">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800'%3E%3Cdefs%3E%3ClinearGradient id='phoneGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF6B9D'/%3E%3Cstop offset='100%25' style='stop-color:%239B59B6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='20' y='20' width='360' height='760' rx='40' fill='url(%23phoneGrad)'/%3E%3Crect x='30' y='30' width='340' height='740' rx='35' fill='white'/%3E%3Crect x='40' y='100' width='320' height='600' rx='20' fill='%23F8F9FA'/%3E%3C/svg%3E" 
+                             alt="Phone mockup" class="w-80 mx-auto">
+                        
+                        <!-- App Screenshots Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-72 h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden">
+                                <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-4 text-white">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-lg">🎰</span>
+                                            <span class="font-bold">GachaMap</span>
+                                        </div>
+                                        <span class="text-lg">🔔</span>
+                                    </div>
+                                </div>
+                                <div class="p-4">
+                                    <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-xl p-4 mb-4">
+                                        <div class="text-2xl mb-2">🎯 Discover Nearby</div>
+                                        <div class="text-lg font-bold text-purple-600">Gacha Spots</div>
+                                        <div class="text-sm text-gray-600">Tap to explore</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="bg-blue-50 rounded-xl p-3">
+                                            <div class="text-2xl mb-1">🏪</div>
+                                            <div class="text-xs font-semibold">Station Area</div>
+                                            <div class="text-xs text-gray-500">Multiple machines</div>
+                                        </div>
+                                        <div class="bg-green-50 rounded-xl p-3">
+                                            <div class="text-2xl mb-1">🎪</div>
+                                            <div class="text-xs font-semibold">Shopping Mall</div>
+                                            <div class="text-xs text-gray-500">New arrivals</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 bg-yellow-50 rounded-xl p-3">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="text-sm font-bold">Popular Series</span>
+                                            <span class="text-xs text-orange-500">View All</span>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <div class="w-12 h-12 bg-pink-200 rounded-lg flex items-center justify-center text-xl">🎀</div>
+                                            <div class="w-12 h-12 bg-purple-200 rounded-lg flex items-center justify-center text-xl">⚡</div>
+                                            <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center text-xl">🌟</div>
+                                            <div class="w-12 h-12 bg-green-200 rounded-lg flex items-center justify-center text-xl">🎮</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-4xl bounce-slow">
+                        🎰
+                    </div>
+                    <div class="absolute bottom-20 -left-10 w-20 h-20 bg-pink-400 rounded-full flex items-center justify-center text-3xl float-animation">
+                        🎪
+                    </div>
+                    <div class="absolute top-1/2 -right-16 w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center text-2xl bounce-slow">
+                        🎯
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-white relative">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,107,157,.1) 35px, rgba(255,107,157,.1) 70px);"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full text-white font-bold text-sm mb-4">
+                    FEATURES
+                </span>
+                <h2 class="text-5xl md:text-6xl font-black mb-6">
+                    Everything You Need for
+                    <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
+                        Gacha Hunting
+                    </span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-3xl p-8 h-full border-2 border-pink-200 hover:border-pink-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Real-Time Map</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Find gacha machines instantly with our GPS-powered map. 
+                            See exactly where each machine is located, even inside buildings!
+                        </p>
+                        <div class="mt-4 flex items-center text-pink-500 font-semibold">
+                            <span>Explore Map</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-3xl p-8 h-full border-2 border-purple-200 hover:border-purple-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Community Reviews</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Read real reviews from fellow collectors. See photos of actual prizes 
+                            and get tips on the best machines to try!
+                        </p>
+                        <div class="mt-4 flex items-center text-purple-500 font-semibold">
+                            <span>Join Community</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-3xl p-8 h-full border-2 border-blue-200 hover:border-blue-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Multi-Language</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Available in English, Chinese, Korean, and more. 
+                            Never miss out on exclusive machines due to language barriers!
+                        </p>
+                        <div class="mt-4 flex items-center text-blue-500 font-semibold">
+                            <span>See Languages</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 h-full border-2 border-green-200 hover:border-green-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Stock Alerts</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Get notified when new series arrive or when popular machines are restocked. 
+                            Never miss limited editions!
+                        </p>
+                        <div class="mt-4 flex items-center text-green-500 font-semibold">
+                            <span>Set Alerts</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-3xl p-8 h-full border-2 border-yellow-200 hover:border-yellow-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Collection Tracker</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Keep track of your gacha collection. Share your rare finds 
+                            and see what others have collected!
+                        </p>
+                        <div class="mt-4 flex items-center text-yellow-600 font-semibold">
+                            <span>Start Collecting</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group card-3d">
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-3xl p-8 h-full border-2 border-red-200 hover:border-red-400 transition-all">
+                        <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Gacha Routes</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Plan the perfect gacha hunting route. Optimize your journey 
+                            to hit all the best spots efficiently!
+                        </p>
+                        <div class="mt-4 flex items-center text-red-500 font-semibold">
+                            <span>Plan Route</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-pink-200/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-white rounded-full text-pink-500 font-bold text-sm mb-4 shadow-lg">
+                    HOW IT WORKS
+                </span>
+                <h2 class="text-5xl md:text-6xl font-black mb-6">
+                    Start Your Gacha Journey
+                    <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
+                        In 3 Simple Steps
+                    </span>
+                </h2>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="relative">
+                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent md:block hidden"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-24 h-24 bg-white rounded-3xl shadow-2xl mx-auto mb-6 flex items-center justify-center">
+                                <span class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">1</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Open & Explore</h3>
+                            <p class="text-gray-600">
+                                Launch the app and instantly see all gacha machines near you on our interactive map
+                            </p>
+                            <div class="mt-4 text-6xl">📍</div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent md:block hidden"></div>
+                        <div class="relative z-10 text-center">
+                            <div class="w-24 h-24 bg-white rounded-3xl shadow-2xl mx-auto mb-6 flex items-center justify-center">
+                                <span class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-600">2</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Choose & Navigate</h3>
+                            <p class="text-gray-600">
+                                Pick your favorite series, read reviews, and get turn-by-turn directions to the location
+                            </p>
+                            <div class="mt-4 text-6xl">🗺️</div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="relative z-10 text-center">
+                            <div class="w-24 h-24 bg-white rounded-3xl shadow-2xl mx-auto mb-6 flex items-center justify-center">
+                                <span class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-600">3</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3">Collect & Share</h3>
+                            <p class="text-gray-600">
+                                Get your capsule toys, share your finds with the community, and track your collection!
+                            </p>
+                            <div class="mt-4 text-6xl">🎉</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose GachaMap -->
+    <section id="testimonials" class="py-24 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full text-white font-bold text-sm mb-4">
+                    WHY GACHAMAP
+                </span>
+                <h2 class="text-5xl md:text-6xl font-black mb-6">
+                    Perfect for Every
+                    <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
+                        Gacha Enthusiast
+                    </span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-3xl p-8 relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-2xl animate-pulse">
+                        🏆
+                    </div>
+                    <div class="mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto">
+                            <i class="fas fa-globe-asia text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">For First-Time Visitors</h3>
+                    <p class="text-gray-700 text-center">
+                        Navigate Japan's gacha world with confidence. Our English interface and detailed directions 
+                        make finding machines easy, even if you don't speak Japanese!
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2 justify-center">
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-pink-600">English Support</span>
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-purple-600">Easy Navigation</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl p-8 relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-pink-400 rounded-full flex items-center justify-center text-2xl animate-pulse">
+                        ❤️
+                    </div>
+                    <div class="mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-green-500 rounded-2xl flex items-center justify-center mx-auto">
+                            <i class="fas fa-users text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">For Serious Collectors</h3>
+                    <p class="text-gray-700 text-center">
+                        Track your collection, find rare series, and connect with fellow collectors. 
+                        Get alerts when new machines arrive at your favorite spots!
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2 justify-center">
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-blue-600">Collection Tracker</span>
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-green-600">Community</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 relative overflow-hidden">
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center text-2xl animate-pulse">
+                        ⭐
+                    </div>
+                    <div class="mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto">
+                            <i class="fas fa-route text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-center">For Adventure Seekers</h3>
+                    <p class="text-gray-700 text-center">
+                        Discover hidden gacha spots off the beaten path. Plan efficient routes to hit 
+                        multiple locations and maximize your capsule toy hunting experience!
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2 justify-center">
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-yellow-600">Route Planning</span>
+                        <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-orange-600">Hidden Spots</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Showcase -->
+    <section class="py-24 bg-gradient-to-r from-pink-500 via-purple-600 to-blue-600 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black text-white text-center mb-16">
+                Discover Japan's Gacha Paradise with Confidence
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-map-marked-alt text-4xl text-white"></i>
+                    </div>
+                    <div class="text-xl font-bold text-white mb-2">Interactive Map</div>
+                    <div class="text-white/80 text-sm">Real-time locations</div>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-language text-4xl text-white"></i>
+                    </div>
+                    <div class="text-xl font-bold text-white mb-2">Multi-Language</div>
+                    <div class="text-white/80 text-sm">Global support</div>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-camera text-4xl text-white"></i>
+                    </div>
+                    <div class="text-xl font-bold text-white mb-2">Photo Reviews</div>
+                    <div class="text-white/80 text-sm">See actual prizes</div>
+                </div>
+                <div class="text-center group">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-route text-4xl text-white"></i>
+                    </div>
+                    <div class="text-xl font-bold text-white mb-2">Smart Routes</div>
+                    <div class="text-white/80 text-sm">Optimized paths</div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <div class="inline-block px-8 py-3 bg-white/20 backdrop-blur-sm rounded-full">
+                    <p class="text-white font-semibold text-lg">
+                        🎌 Specially designed for tourists visiting Japan 🎌
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-yellow-200/40 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-64 h-64 bg-pink-200/40 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="max-w-3xl mx-auto">
+                <div class="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full text-white font-bold text-lg mb-8 bounce-slow">
+                    <i class="fas fa-gift mr-2"></i>
+                    Start Your Gacha Adventure Today!
+                </div>
+                
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-black mb-8">
+                    Ready to Start Your
+                    <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-600 to-blue-600">
+                        Gacha Adventure?
+                    </span>
+                </h2>
+                
+                <p class="text-xl text-gray-700 mb-12">
+                    Download GachaMap now and discover Japan's hidden capsule toy treasures!
+                    <br>
+                    Your next rare find is just a tap away! 🎯
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center mb-8">
+                    <button class="group bg-black text-white px-10 py-5 rounded-3xl font-bold text-xl hover:shadow-2xl transform hover:scale-105 transition-all flex items-center gap-4">
+                        <i class="fab fa-apple text-3xl"></i>
+                        <div class="text-left">
+                            <div class="text-sm opacity-80">Download on the</div>
+                            <div class="text-xl">App Store</div>
+                        </div>
+                    </button>
+                    <button class="group bg-gradient-to-r from-pink-500 to-purple-600 text-white px-10 py-5 rounded-3xl font-bold text-xl hover:shadow-2xl transform hover:scale-105 transition-all flex items-center gap-4">
+                        <i class="fab fa-google-play text-3xl"></i>
+                        <div class="text-left">
+                            <div class="text-sm">Get it on</div>
+                            <div class="text-xl">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-center gap-4 text-gray-600">
+                    <span class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                        Free to Download
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                        No Ads
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                        Offline Maps
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white text-xl">🎰</span>
+                        </div>
+                        <span class="text-2xl font-bold">GachaMap</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Your ultimate companion for discovering Japan's capsule toy paradise!
+                    </p>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-400 transition">Interactive Map</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Machine Finder</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Community Reviews</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Collection Tracker</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Tutorial</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Legal</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-pink-400 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 GachaMap. All rights reserved. Made with ❤️ for Gacha lovers worldwide!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.float-animation');
+            parallax.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-3d').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
